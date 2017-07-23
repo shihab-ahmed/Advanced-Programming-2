@@ -44,19 +44,25 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                                    <asp:DropDownList ID="DropDownList1" runat="server">
+                                    <asp:TextBox ID="SearchBox" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="SearchKeyDrowDown" runat="server">
                                         <asp:ListItem>Any</asp:ListItem>
                                         <asp:ListItem>First Name</asp:ListItem>
                                         <asp:ListItem>Last Name</asp:ListItem>
                                         <asp:ListItem>Age</asp:ListItem>
                                         <asp:ListItem>Type</asp:ListItem>
                                     </asp:DropDownList>
+                                    <asp:Button ID="Search" runat="server" Text="Search" OnClick="Search_Click" />
                                 </td>
+                              
                             </tr>
                             <tr>
-                                <td>
-                                    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                                <td >
+                                    <asp:GridView ID="GridView1" runat="server">
+                                        <Columns>
+                                            <asp:CommandField HeaderText="Option" ShowDeleteButton="True" ShowEditButton="True" />
+                                        </Columns>
+                                    </asp:GridView>
                                 </td>
                             </tr>
                            
