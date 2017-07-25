@@ -13,5 +13,22 @@ namespace ATP2_Assignment
         {
 
         }
+
+        protected void Sign_Click(object sender, EventArgs e)
+        {
+            String userID = idTxt.Text;
+            String pass = passText.Text;
+
+            SampleDataContext context = new SampleDataContext();
+            User x=context.Users.SingleOrDefault(u => u.UserID == userID && u.Password == pass);
+            if(x!=null)
+            {
+               
+            }
+            else if(userID=="system" && pass=="system")
+            {
+                Response.Redirect("~/AddAdminShowUser.aspx");
+            }
+        }
     }
 }

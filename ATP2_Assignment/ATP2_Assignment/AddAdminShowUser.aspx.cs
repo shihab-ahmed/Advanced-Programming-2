@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,13 +12,17 @@ namespace ATP2_Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            loadUser();
+
+
+        }
+        private void loadUser()
+        {
             SampleDataContext sContext = new SampleDataContext();
             List<User> Users = (from user in sContext.Users
-                                    select user).ToList();
+                                select user).ToList();
             GridView1.DataSource = Users;
             GridView1.DataBind();
-
-           
         }
         private void search(String wordToSearch,String key)
         {
@@ -66,6 +71,26 @@ namespace ATP2_Assignment
             String key = SearchKeyDrowDown.SelectedValue;
 
             search(wordToSearch, key);
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            
+            Response.Write(GridView1.Rows[e.RowIndex].Cells[1].Text);
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            loadUser();
+        }
+
+        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            loadUser();
+           
+            
         }
     }
 }

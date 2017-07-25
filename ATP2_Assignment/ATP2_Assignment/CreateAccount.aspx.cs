@@ -24,5 +24,36 @@ namespace ATP2_Assignment
             TextBoxDOB.Text = CalendarDOB.SelectedDate.ToShortDateString();
             CalendarDOB.Visible = false;
         }
+
+        protected void SignUp_Click(object sender, EventArgs e)
+        {
+            String fname = FnameTxt.Text;
+            String lname = LnameTxt.Text;
+            String uid = UserIDTxt.Text;
+            String email = EmailTxt.Text;
+            DateTime bday = DateTime.Parse(TextBoxDOB.Text);
+            String gender = GenderButtonList.SelectedValue;
+            String pass = PassTxt.Text;
+            int age = new DateTime((DateTime.Now - Convert.ToDateTime(bday)).Ticks).Year;
+            Response.Write(age);
+
+            SampleDataContext context = new SampleDataContext();
+
+            User user = new User()
+            {
+                FirstName = fname,
+                LastName = lname,
+                UserID = uid,
+                BirthDate = bday,
+                Age = age,
+                Gender = gender,
+                Password = pass,
+                Type = "User",
+                Email = email
+            };
+            context.Users.InsertOnSubmit(user);
+            context.SubmitChanges();
+            ResultText.Visible = true;
+        }
     }
 }

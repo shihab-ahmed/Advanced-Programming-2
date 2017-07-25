@@ -58,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td >
-                                    <asp:GridView ID="GridView1" runat="server">
+                                    <asp:GridView ID="GridView1" runat="server" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing">
                                         <Columns>
                                             <asp:CommandField HeaderText="Option" ShowDeleteButton="True" ShowEditButton="True" />
                                         </Columns>
