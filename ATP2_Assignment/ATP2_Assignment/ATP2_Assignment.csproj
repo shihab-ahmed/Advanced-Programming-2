@@ -59,6 +59,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddAdminUpdate.aspx" />
+    <Content Include="AdminDashboardProfile.aspx" />
+    <Content Include="DoctorProfile.aspx" />
     <Content Include="Images\1.jpg" />
     <Content Include="Sample.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -81,6 +84,7 @@
     <Content Include="AdminDashboardAddDoctor.aspx" />
     <Content Include="CreateAccount.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -91,6 +95,13 @@
     </Compile>
     <Compile Include="AddAdminShowUser.aspx.designer.cs">
       <DependentUpon>AddAdminShowUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddAdminUpdate.aspx.cs">
+      <DependentUpon>AddAdminUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAdminUpdate.aspx.designer.cs">
+      <DependentUpon>AddAdminUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminDashboardAddAdmin.aspx.cs">
       <DependentUpon>AdminDashboardAddAdmin.aspx</DependentUpon>
@@ -106,12 +117,26 @@
     <Compile Include="AdminDashboardAddDoctor.aspx.designer.cs">
       <DependentUpon>AdminDashboardAddDoctor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminDashboardProfile.aspx.cs">
+      <DependentUpon>AdminDashboardProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDashboardProfile.aspx.designer.cs">
+      <DependentUpon>AdminDashboardProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateAccount.aspx.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateAccount.aspx.designer.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorProfile.aspx.cs">
+      <DependentUpon>DoctorProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DoctorProfile.aspx.designer.cs">
+      <DependentUpon>DoctorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -125,6 +150,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Sample.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

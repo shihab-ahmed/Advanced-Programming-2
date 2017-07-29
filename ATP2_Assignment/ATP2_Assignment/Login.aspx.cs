@@ -23,11 +23,14 @@ namespace ATP2_Assignment
             User x=context.Users.SingleOrDefault(u => u.UserID == userID && u.Password == pass);
             if(x!=null)
             {
-               
+                Session["user"] = x;
+               if(x.Type=="Admin") Response.Redirect("~/AddAdminShowUser.aspx");
+               if (x.Type == "User") Response.Redirect("~/UserProfile.aspx");
+               if (x.Type == "Doctor") Response.Redirect("~/DoctorProfile.aspx");
             }
-            else if(userID=="system" && pass=="system")
+            else
             {
-                Response.Redirect("~/AddAdminShowUser.aspx");
+                Error.Visible = true;
             }
         }
     }

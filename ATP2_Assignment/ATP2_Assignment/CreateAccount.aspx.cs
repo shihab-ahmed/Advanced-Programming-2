@@ -11,7 +11,7 @@ namespace ATP2_Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void ImageButtonShowCalendar_Click(object sender, ImageClickEventArgs e)
@@ -27,33 +27,51 @@ namespace ATP2_Assignment
 
         protected void SignUp_Click(object sender, EventArgs e)
         {
-            String fname = FnameTxt.Text;
-            String lname = LnameTxt.Text;
-            String uid = UserIDTxt.Text;
-            String email = EmailTxt.Text;
-            DateTime bday = DateTime.Parse(TextBoxDOB.Text);
-            String gender = GenderButtonList.SelectedValue;
-            String pass = PassTxt.Text;
-            int age = new DateTime((DateTime.Now - Convert.ToDateTime(bday)).Ticks).Year;
-            Response.Write(age);
-
             SampleDataContext context = new SampleDataContext();
+            List<User> uList=context.Users.Where(u => u.UserID == UserIDTxt.Text).ToList();
 
-            User user = new User()
+            if(uList.Count<=0)
             {
-                FirstName = fname,
-                LastName = lname,
-                UserID = uid,
-                BirthDate = bday,
-                Age = age,
-                Gender = gender,
-                Password = pass,
-                Type = "User",
-                Email = email
-            };
-            context.Users.InsertOnSubmit(user);
-            context.SubmitChanges();
-            ResultText.Visible = true;
+                String fname = FnameTxt.Text;
+                String lname = LnameTxt.Text;
+                String uid = UserIDTxt.Text;
+                String email = EmailTxt.Text;
+                DateTime bday = DateTime.Parse(TextBoxDOB.Text);
+                String gender = GenderButtonList.SelectedValue;
+                String pass = PassTxt.Text;
+                int age = new DateTime((DateTime.Now - Convert.ToDateTime(bday)).Ticks).Year;
+                Response.Write(age);
+
+
+
+                User user = new User()
+                {
+                    FirstName = fname,
+                    LastName = lname,
+                    UserID = uid,
+                    BirthDate = bday,
+                    Age = age,
+                    Gender = gender,
+                    Password = pass,
+                    Type = "User",
+                    Email = email
+                };
+                context.Users.InsertOnSubmit(user);
+                context.SubmitChanges();
+                ResultText.Visible = true;
+                NameTaken.Visible = false;
+            }
+            else
+            {
+                NameTaken.Visible = true;
+                ResultText.Visible = false;
+            }
+
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            Response.Write("asdasd");
         }
     }
 }

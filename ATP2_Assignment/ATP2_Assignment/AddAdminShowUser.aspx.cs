@@ -10,10 +10,13 @@ namespace ATP2_Assignment
 {
     public partial class AddAdminShowUser : System.Web.UI.Page
     {
+        User LoggedUser;
         protected void Page_Load(object sender, EventArgs e)
         {
             loadUser();
 
+            LoggedUser = (User)Session["user"];
+            nameTxt.Text = LoggedUser.FirstName +" "+LoggedUser.LastName;
 
         }
         private void loadUser()
@@ -76,7 +79,17 @@ namespace ATP2_Assignment
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             
-            Response.Write(GridView1.Rows[e.RowIndex].Cells[1].Text);
+            int id=Int32.Parse(GridView1.Rows[e.RowIndex].Cells[0].Text);
+            SampleDataContext sContext = new SampleDataContext();
+            var user = sContext.Users.FirstOrDefault(s => s.id == id);
+            if (user != null)
+            {
+                sContext.Users.DeleteOnSubmit(user);
+                sContext.SubmitChanges();
+            }
+            loadUser();
+
+
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)

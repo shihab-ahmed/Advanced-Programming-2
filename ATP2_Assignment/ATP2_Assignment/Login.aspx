@@ -13,7 +13,7 @@
             width: 140px;
         }
         .auto-style3 {
-            width: 197px;
+            width: 273px;
         }
     </style>
 </head>
@@ -24,7 +24,7 @@
                 <tr>
                     <td class="auto-style2">User ID :</td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="idTxt" runat="server" Width="159px"></asp:TextBox>
+                        <asp:TextBox ID="idTxt" runat="server" Width="250px"></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -32,7 +32,16 @@
                 <tr>
                     <td class="auto-style2">Password:</td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="passText" runat="server" Width="157px"></asp:TextBox>
+                        <asp:TextBox ID="passText" runat="server" Width="250px"></asp:TextBox>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        &nbsp;</td>
+                    <td class="auto-style3" >
+                        <asp:Button ID="Sign" runat="server" OnClick="Sign_Click" Text="Sign In" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -40,7 +49,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style3">
-                        <asp:Button ID="Sign" runat="server" OnClick="Sign_Click" Text="Sign In" />
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/CreateAccount.aspx">Don&#39;t Have Account ?</asp:HyperLink>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

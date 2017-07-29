@@ -34,6 +34,7 @@
                      <td> <asp:TextBox ID="UserIDTxt" runat="server"></asp:TextBox></td>
                      <td class="auto-style1">  
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="UserIDTxt" ErrorMessage="First Name Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                         <asp:Label ID="NameTaken" runat="server" Font-Bold="True" ForeColor="Red" Text="Name Taken" Visible="False"></asp:Label>
                       </td>
                 </tr>
                  </tr>
@@ -49,20 +50,21 @@
                      <td> <asp:Label ID="Label20" runat="server" Text="Birthdate"></asp:Label></td>
                      <td>
                          <asp:TextBox ID="TextBoxDOB" runat="server" Enabled="False"></asp:TextBox>
-                        <asp:ImageButton ID="ImageButtonShowCalendar" runat="server" ImageUrl="~/Images/1.jpg" Height="24px" OnClick="ImageButtonShowCalendar_Click" /><br />
+                        <asp:ImageButton ID="ImageButtonShowCalendar" runat="server" ImageUrl="~/Images/1.jpg" Height="24px" OnClick="ImageButtonShowCalendar_Click" CausesValidation="False" /><br />
                         <asp:Calendar ID="CalendarDOB" runat="server" Visible="false" OnSelectionChanged="CalendarDOB_SelectionChanged"></asp:Calendar>
                     
 
                      </td>
                      <td class="auto-style1"> 
-                         &nbsp;</td>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TextBoxDOB" ErrorMessage="Date  Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                      </td>
                 </tr>
                   <tr>
                      <td> <asp:Label ID="Label22" runat="server" Text="First Name: "></asp:Label></td>
                      <td> 
                           <asp:RadioButtonList ID="GenderButtonList" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Value="M">Male</asp:ListItem>
-                            <asp:ListItem Value="F">Female</asp:ListItem>
+                            <asp:ListItem Value="Male">Male</asp:ListItem>
+                            <asp:ListItem Value="Female">Female</asp:ListItem>
                          </asp:RadioButtonList>
 
                      </td>
@@ -87,11 +89,13 @@
                 </tr>
                   <tr>
                      <td></td>
-                     <td> <asp:Button ID="SignUp" runat="server" Text="Sign Up" OnClick="SignUp_Click" /></td>
-                     <td class="auto-style1"></td>
+                     <td> 
+                         <asp:Button ID="Button1" runat="server" PostBackUrl="~/Login.aspx" Text="Back" CausesValidation="False" />
+                         <asp:Button ID="SignUp" runat="server" Text="Sign Up" OnClick="SignUp_Click" /></td>
+                     <td class="auto-style1">&nbsp;</td>
                 </tr>
                   <tr>
-                     <td></td>
+                     <td>&nbsp;</td>
                      <td>  <asp:Label ID="ResultText" runat="server" Text="Account Created" Font-Bold="True" ForeColor="Lime" Visible="False"></asp:Label></td>
                      <td class="auto-style1"></td>
                 </tr>
