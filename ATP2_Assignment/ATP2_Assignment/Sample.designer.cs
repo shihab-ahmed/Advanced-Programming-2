@@ -30,6 +30,9 @@ namespace ATP2_Assignment
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertDoctor(Doctor instance);
+    partial void UpdateDoctor(Doctor instance);
+    partial void DeleteDoctor(Doctor instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -65,6 +68,14 @@ namespace ATP2_Assignment
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Doctor> Doctors
+		{
+			get
+			{
+				return this.GetTable<Doctor>();
+			}
+		}
+		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
@@ -74,7 +85,182 @@ namespace ATP2_Assignment
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Doctors")]
+	public partial class Doctor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _DocID;
+		
+		private string _Specialist;
+		
+		private int _Experience;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDocIDChanging(int value);
+    partial void OnDocIDChanged();
+    partial void OnSpecialistChanging(string value);
+    partial void OnSpecialistChanged();
+    partial void OnExperienceChanging(int value);
+    partial void OnExperienceChanged();
+    #endregion
+		
+		public Doctor()
+		{
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocID", DbType="Int NOT NULL")]
+		public int DocID
+		{
+			get
+			{
+				return this._DocID;
+			}
+			set
+			{
+				if ((this._DocID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDocIDChanging(value);
+					this.SendPropertyChanging();
+					this._DocID = value;
+					this.SendPropertyChanged("DocID");
+					this.OnDocIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Specialist", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Specialist
+		{
+			get
+			{
+				return this._Specialist;
+			}
+			set
+			{
+				if ((this._Specialist != value))
+				{
+					this.OnSpecialistChanging(value);
+					this.SendPropertyChanging();
+					this._Specialist = value;
+					this.SendPropertyChanged("Specialist");
+					this.OnSpecialistChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Experience", DbType="Int NOT NULL")]
+		public int Experience
+		{
+			get
+			{
+				return this._Experience;
+			}
+			set
+			{
+				if ((this._Experience != value))
+				{
+					this.OnExperienceChanging(value);
+					this.SendPropertyChanging();
+					this._Experience = value;
+					this.SendPropertyChanged("Experience");
+					this.OnExperienceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Doctor", Storage="_User", ThisKey="DocID", OtherKey="id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Doctors.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Doctors.Add(this);
+						this._DocID = value.id;
+					}
+					else
+					{
+						this._DocID = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -99,6 +285,8 @@ namespace ATP2_Assignment
 		private string _Type;
 		
 		private string _Email;
+		
+		private EntitySet<Doctor> _Doctors;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -128,6 +316,7 @@ namespace ATP2_Assignment
 		
 		public User()
 		{
+			this._Doctors = new EntitySet<Doctor>(new Action<Doctor>(this.attach_Doctors), new Action<Doctor>(this.detach_Doctors));
 			OnCreated();
 		}
 		
@@ -291,7 +480,7 @@ namespace ATP2_Assignment
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string Type
 		{
 			get
@@ -311,7 +500,7 @@ namespace ATP2_Assignment
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Email
 		{
 			get
@@ -328,6 +517,19 @@ namespace ATP2_Assignment
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Doctor", Storage="_Doctors", ThisKey="id", OtherKey="DocID")]
+		public EntitySet<Doctor> Doctors
+		{
+			get
+			{
+				return this._Doctors;
+			}
+			set
+			{
+				this._Doctors.Assign(value);
 			}
 		}
 		
@@ -349,6 +551,18 @@ namespace ATP2_Assignment
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Doctors(Doctor entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Doctors(Doctor entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }

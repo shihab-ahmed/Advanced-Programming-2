@@ -161,7 +161,6 @@
                   <tr>
                      <td class="auto-style2"></td>
                      <td> 
-                         <asp:Button ID="Button1" runat="server" PostBackUrl="~/Login.aspx" Text="Back" CausesValidation="False" />
                          <asp:Button ID="SignUp" runat="server" Text="Sign Up" OnClick="SignUp_Click" /></td>
                      <td class="auto-style1">&nbsp;</td>
                 </tr>
