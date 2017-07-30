@@ -87,7 +87,7 @@
                               </td>
                         </tr>
                           <tr>
-                             <td> <asp:Label ID="Label22" runat="server" Text="First Name: "></asp:Label></td>
+                             <td> <asp:Label ID="Label22" runat="server" Text="Gender: "></asp:Label></td>
                              <td> 
                                   <asp:RadioButtonList ID="GenderButtonList" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="Male">Male</asp:ListItem>
@@ -117,7 +117,6 @@
                           <tr>
                              <td></td>
                              <td> 
-                                 <asp:Button ID="Button1" runat="server" PostBackUrl="~/Login.aspx" Text="Back" CausesValidation="False" />
                                  <asp:Button ID="SignUp" runat="server" Text="Sign Up" OnClick="SignUp_Click" /></td>
                              <td class="auto-style1">&nbsp;</td>
                         </tr>

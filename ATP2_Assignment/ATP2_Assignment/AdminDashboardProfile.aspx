@@ -31,12 +31,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Button ID="AddAdminBtn" runat="server" Text="AddAdmin" Width="93px" PostBackUrl="~/AdminDashboardAddAdmin.aspx" OnClick="AddAdminBtn_Click" />
+                                    <asp:Button ID="AddAdminBtn" runat="server" Text="AddAdmin" Width="93px" PostBackUrl="~/AdminDashboardAddAdmin.aspx" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Button ID="AddDoctorBtn" runat="server" Text="AddDoctor" PostBackUrl="~/AdminDashboardAddDoctor.aspx" OnClick="AddDoctorBtn_Click" />
+                                    <asp:Button ID="AddDoctorBtn" runat="server" Text="AddDoctor" PostBackUrl="~/AdminDashboardAddDoctor.aspx" />
                                 </td>
                             </tr>
                             <tr>
