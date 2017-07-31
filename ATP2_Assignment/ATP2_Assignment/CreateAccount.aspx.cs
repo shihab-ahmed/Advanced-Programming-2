@@ -40,9 +40,6 @@ namespace ATP2_Assignment
                 String gender = GenderButtonList.SelectedValue;
                 String pass = PassTxt.Text;
                 int age = new DateTime((DateTime.Now - Convert.ToDateTime(bday)).Ticks).Year;
-                Response.Write(age);
-
-
 
                 User user = new User()
                 {

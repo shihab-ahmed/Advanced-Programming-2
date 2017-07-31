@@ -51,7 +51,9 @@ namespace ATP2_Assignment
             String email = EmailTxt.Text;
             DateTime bday = DateTime.Parse(TextBoxDOB.Text);
             String gender = GenderButtonList.SelectedValue;
-            int age = new DateTime((DateTime.Now - Convert.ToDateTime(bday)).Ticks).Year;
+            
+            int age = DateTime.Now.Year - bday.Year;
+
 
             var userToUpdate =  (from u in context.Users
                          where u.UserID == user.UserID

@@ -33,22 +33,22 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Button ID="AddAdminBtn" runat="server" Text="AddAdmin" PostBackUrl="~/AdminDashboardAddAdmin.aspx" />
+                                    <asp:Button ID="AddAdminBtn" runat="server" Text="AddAdmin" PostBackUrl="~/AdminDashboardAddAdmin.aspx" CausesValidation="False" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Button ID="AddDoctorBtn" runat="server" Text="AddDoctor" PostBackUrl="~/AdminDashboardAddDoctor.aspx" />
+                                    <asp:Button ID="AddDoctorBtn" runat="server" Text="AddDoctor" PostBackUrl="~/AdminDashboardAddDoctor.aspx" CausesValidation="False" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Button ID="ShowUserBtn" runat="server" Text="ShowUser" PostBackUrl="~/AddAdminShowUser.aspx" />
+                                    <asp:Button ID="ShowUserBtn" runat="server" Text="ShowUser" PostBackUrl="~/AddAdminShowUser.aspx" CausesValidation="False" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Button ID="LogoutBtn" runat="server" Text="Logout" PostBackUrl="~/Login.aspx" />
+                                    <asp:Button ID="LogoutBtn" runat="server" Text="Logout" PostBackUrl="~/Login.aspx" CausesValidation="False" />
                                 </td>
                             </tr>
                         </table>
